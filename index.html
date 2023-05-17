@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #number {
+            font-size: 10vw;
+        }
+
+        #button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="number"></div>
+        <button id="button" onclick="nextNumber()">Next</button>
+    </div>
+
+    <script>
+        var jsonData = [{"1": "red"}, {"2": "blue"}];
+        var currentIndex = 0;
+        var numberElement = document.getElementById("number");
+
+        function nextNumber() {
+            currentIndex = (currentIndex + 1) % jsonData.length;
+            var data = jsonData[currentIndex];
+            var number = Object.keys(data)[0];
+            var color = data[number];
+
+            numberElement.innerHTML = number;
+            numberElement.style.color = color;
+        }
+
+        // Hiển thị số đầu tiên khi trang được tải
+        window.addEventListener("load", function() {
+            var data = jsonData[currentIndex];
+            var number = Object.keys(data)[0];
+            var color = data[number];
+
+            numberElement.innerHTML = number;
+            numberElement.style.color = color;
+        });
+    </script>
+</body>
+</html>
